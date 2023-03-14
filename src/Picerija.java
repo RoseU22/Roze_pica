@@ -1,8 +1,26 @@
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 
 public class Picerija {
 
 	static String fNosaukums;
+	
+	
+	static void saglabat(String adrese, String vards, String uzvards, int talrunis){
+		fNosaukums = JOptionPane.showInputDialog("Kur glabâsiet kontaktdatus?");
+		
+		try{
+			FileWriter fw = new FileWriter(fNosaukums+".txt", true);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.println(vards+" "+uzvards+": "+adrese+", "+talrunis);
+			pw.close();
+			JOptionPane.showMessageDialog(null, "Veiksmîgi tika ierakstîti kontaktdati!");
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Râdâs kïûda saglabâjot kontaktdatus!");
+		}
+	}
 	
 	static void IevaditKontaktDatus(){
 		String adrese, vards, uzvards;
@@ -12,6 +30,8 @@ public class Picerija {
 		vards = JOptionPane.showInputDialog("Ievadi personas vârdu:");
 		uzvards = JOptionPane.showInputDialog("Ievadi personas uzvârdu:");
 		talrunis = Integer.parseInt(JOptionPane.showInputDialog("Ievadi personas tâlruni:"));
+		
+		saglabat(adrese, vards, uzvards, talrunis);
 		
 	}
 	
@@ -38,7 +58,7 @@ public class Picerija {
 				break;
 				
 			case "Iziet no programmas":
-				
+				JOptionPane.showMessageDialog(null, "Programma tika apturçta!");
 				break;
 			
 			}
