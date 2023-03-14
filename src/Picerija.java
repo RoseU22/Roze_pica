@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -19,6 +21,23 @@ public class Picerija {
 			JOptionPane.showMessageDialog(null, "Veiksmîgi tika ierakstîti kontaktdati!");
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, "Râdâs kïûda saglabâjot kontaktdatus!");
+		}
+	}
+	
+	static void apskatitPasutijumus(){
+		String teksts, str="";
+		
+		try{
+			FileReader fr = new FileReader(fNosaukums+".txt");
+			BufferedReader br = new BufferedReader(fr);
+			while((teksts=br.readLine()) != null){
+				str += teksts+"\n";
+			}
+			br.close();
+			JOptionPane.showMessageDialog(null, str, "Saturs", JOptionPane.INFORMATION_MESSAGE);
+			
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Râdâs kïûda nolasot kontaktdatus");
 		}
 	}
 	
@@ -54,7 +73,7 @@ public class Picerija {
 				break;
 				
 			case "Apskatît aktîvos pasûtîjumus":
-				
+				apskatitPasutijumus();
 				break;
 				
 			case "Iziet no programmas":
