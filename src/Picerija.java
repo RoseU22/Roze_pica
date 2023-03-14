@@ -2,6 +2,19 @@ import javax.swing.JOptionPane;
 
 public class Picerija {
 
+	static String fNosaukums;
+	
+	static void IevaditKontaktDatus(){
+		String adrese, vards, uzvards;
+		int talrunis;
+		
+		adrese = JOptionPane.showInputDialog("Ievadi personas adresi:");
+		vards = JOptionPane.showInputDialog("Ievadi personas vârdu:");
+		uzvards = JOptionPane.showInputDialog("Ievadi personas uzvârdu:");
+		talrunis = Integer.parseInt(JOptionPane.showInputDialog("Ievadi personas tâlruni:"));
+		
+	}
+	
 	public static void main(String[] args) {
 		
 		String[] opcijas = {"Ievadît kontaktdatus","Uztaisît picu","Apskatît aktîvos pasûtîjumus","Iziet no programmas"};
@@ -13,7 +26,7 @@ public class Picerija {
 			switch(izvele){
 				
 			case "Ievadît kontaktdatus":
-				
+				IevaditKontaktDatus();
 				break;
 				
 			case "Uztaisît picu":
