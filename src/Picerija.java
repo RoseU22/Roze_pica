@@ -55,6 +55,8 @@ public class Picerija {
 	static void apskatitPasutijumus(){
 		String teksts, str="";
 		
+		fNosaukums = JOptionPane.showInputDialog("Kuru failu gribat apskatît?");
+		
 		try{
 			FileReader fr = new FileReader(fNosaukums+".txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -72,6 +74,7 @@ public class Picerija {
 	static void UztaisitPicu(){
 		
 		double cena = 0;
+		double piegade=0;
 		
 		JTextField Adrese = new JTextField();
 		JTextField Vards = new JTextField();
@@ -85,8 +88,6 @@ public class Picerija {
 		
 		if(OpcijasIzvele == 0){
 			
-		
-		
 		Object[] Kontaktdati = {
 				"Adrese: ", Adrese,
 				"Vârds: ", Vards,
@@ -95,7 +96,7 @@ public class Picerija {
 		};
 		
 		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
-		cena += 1.25;
+		piegade += 1.25;
 		
 		}else if(OpcijasIzvele==1){
 			
@@ -182,7 +183,7 @@ public class Picerija {
 					}
 				}
 			
-			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum)+"€");
+			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum+piegade)+"€");
 			}
 		
 			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, IzveletasOpcijas, IzvOpcijas, OpcijasIzvele);
