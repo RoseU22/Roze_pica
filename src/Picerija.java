@@ -15,11 +15,21 @@ public class Picerija {
 	
 	static void saglabat(JTextField Adrese, JTextField Vards, JTextField Uzvards, JTextField Talrunis, JTextField PicasLielums, JTextField Merce, int[] IzveletasOpcijas){
 		fNosaukums = JOptionPane.showInputDialog("Kur glabâsiet kontaktdatus?");
+		int[] ir = new int[IzveletasOpcijas.length];
+		int summa = 0;
 		
 		try{
 			FileWriter fw = new FileWriter(fNosaukums+".txt", true);
 			PrintWriter pw = new PrintWriter(fw);
-			//pw.println(vards+" "+uzvards+": "+adrese+", "+talrunis);
+			pw.println(Vards.getText()+" "+Uzvards.getText()+" (+371 "+Talrunis.getText()+"):  "+Adrese.getText());
+			pw.print("Pasûtîjums: "+PicasLielums.getText()+"cm pica ar "+Merce.getText()+" mçrci");
+			for(int i=0; i<IzveletasOpcijas.length; i++){
+				ir[i] = IzveletasOpcijas[i];
+				summa += ir[i];
+			}
+			if(summa>=1)
+				pw.println(" un ar izvçlçtâm piedevâm");
+			pw.println();
 			pw.close();
 			JOptionPane.showMessageDialog(null, "Veiksmîgi tika ierakstîti kontaktdati!");
 		}catch(Exception e){
@@ -37,7 +47,7 @@ public class Picerija {
 				str += teksts+"\n";
 			}
 			br.close();
-			JOptionPane.showMessageDialog(null, str, "Saturs", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, str, "Kontaktdati", JOptionPane.INFORMATION_MESSAGE);
 			
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, "Râdâs kïûda nolasot kontaktdatus");
@@ -60,7 +70,7 @@ public class Picerija {
 		};
 		
 		Object[] Pica = {
-				"Izvçlies picas lielumu (1cm = 0.35€): ", PicasLielums,
+				"Izvçlies picas lielumu (1cm = 0.30€): ", PicasLielums,
 				"Izvçlies picas mçrci:\nAsâ mçrce - 1€\nGuríu mçrce - 1.25€\nÍiploku mçrce - 1.15€\nTomâtu-krçjuma mçrce - 1.50€\nKarija mçrce - 1.30€", Merce
 		};
 		
@@ -104,7 +114,7 @@ public class Picerija {
 			
 			String teksts = PicasLielums.getText();
 			double prece = Double.parseDouble(teksts);
-			double cena = ((prece*0.35)+summa*1);
+			double cena = ((prece*0.30)+summa*1);
 			
 			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+cena+"€");
 			
