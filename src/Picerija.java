@@ -13,22 +13,30 @@ public class Picerija {
 	static String fNosaukums;
 	
 	
-	static void saglabat(JTextField Adrese, JTextField Vards, JTextField Uzvards, JTextField Talrunis, JTextField PicasLielums, JTextField Merce, int[] IzveletasOpcijas){
+	static void saglabat(JTextField Adrese, JTextField Vards, JTextField Uzvards, JTextField Talrunis, JTextField PicasLielums, int[] IzveletasOpcijas, int[] IzvOpcijas){
 		fNosaukums = JOptionPane.showInputDialog("Kur glabâsiet kontaktdatus?");
 		int[] ir = new int[IzveletasOpcijas.length];
-		int summa = 0;
+		int[] ir2 = new int[IzvOpcijas.length];
+		int summa = 0, summa2 = 0;
 		
 		try{
 			FileWriter fw = new FileWriter(fNosaukums+".txt", true);
 			PrintWriter pw = new PrintWriter(fw);
-			pw.println(Vards.getText()+" "+Uzvards.getText()+" (+371 "+Talrunis.getText()+"):  "+Adrese.getText());
-			pw.print("Pasûtîjums: "+PicasLielums.getText()+"cm pica ar "+Merce.getText()+" mçrci");
+			pw.println(" - "+Vards.getText()+" "+Uzvards.getText()+" (+371 "+Talrunis.getText()+"):  "+Adrese.getText());
+			pw.print("Pasûtîjums: "+PicasLielums.getText()+"cm pica ar ");
+			for(int i=0; i<IzvOpcijas.length; i++){
+				ir2[i] = IzvOpcijas[i];
+				summa2 += ir2[i];
+			}
+			if(summa2>=1)
+				pw.println(" izvçlçtâm mçrcçm, ");
+			
 			for(int i=0; i<IzveletasOpcijas.length; i++){
 				ir[i] = IzveletasOpcijas[i];
 				summa += ir[i];
 			}
 			if(summa>=1)
-				pw.println(" un ar izvçlçtâm piedevâm");
+				pw.println(" izvçlçtâm piedevâm");
 			pw.println();
 			pw.close();
 			JOptionPane.showMessageDialog(null, "Veiksmîgi tika ierakstîti kontaktdati!");
@@ -55,12 +63,14 @@ public class Picerija {
 	}
 	
 	static void UztaisitPicu(){
+		
+		double cena = 0;
+		
 		JTextField Adrese = new JTextField();
 		JTextField Vards = new JTextField();
 		JTextField Uzvards = new JTextField();
 		JTextField Talrunis = new JTextField();
 		JTextField PicasLielums = new JTextField();
-		JTextField Merce = new JTextField();
 		
 		Object[] Kontaktdati = {
 				"Adrese: ", Adrese,
@@ -71,21 +81,20 @@ public class Picerija {
 		
 		Object[] Pica = {
 				"Izvçlies picas lielumu (1cm = 0.30€): ", PicasLielums,
-				"Izvçlies picas mçrci:\nAsâ mçrce - 1€\nGuríu mçrce - 1.25€\nÍiploku mçrce - 1.15€\nTomâtu-krçjuma mçrce - 1.50€\nKarija mçrce - 1.30€", Merce
 		};
 		
 		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
 		JOptionPane.showConfirmDialog(null, Pica, "Picas taisîðana", JOptionPane.OK_CANCEL_OPTION);
 		
-		Object[] piedevas = {"Siers",
-							 "Bekons",
-							 "Ðíiòíis",
-							 "Vistas fileja",
-							 "Maltâ gaïa",
-							 "Sarkanie sîpoli",
-							 "Ðampinjoni",
-							 "Tomâti",
-							 "Paprika"};
+		Object[] piedevas = {"Siers - 2.00€",
+							 "Bekons - 1.50€",
+							 "Ðíiòíis - 1.50€",
+							 "Vistas fileja - 1.50€",
+							 "Maltâ gaïa - 1.30€",
+							 "Sarkanie sîpoli - 0.70€",
+							 "Ðampinjoni - 0.70€",
+							 "Tomâti - 0.70€",
+							 "Paprika - 0.50€"};
 		
 		double[] Cenas = {2.00,1.50,1.50,1.50,1.30,0.70,0.70,0.70,0.50};
 		double summa=0;
@@ -112,17 +121,49 @@ public class Picerija {
 				}
 			}
 			
-			String teksts = PicasLielums.getText();
-			double prece = Double.parseDouble(teksts);
-			double cena = ((prece*0.30)+summa*1);
+		    String teksts = PicasLielums.getText();
+		    double prece = Double.parseDouble(teksts);
+		    cena = ((prece*0.30)+summa*1);
 			
-			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+cena+"€");
-			
-			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, Merce, IzveletasOpcijas);
 			
 		}
 		
-	}
+		Object[] Merces = {"Asâ mçrce - 1€",
+				   "Guríu mçrce - 1.25€",
+			       "Íiploku mçrce - 1.15€",
+			       "Tomâtu-krçjuma mçrce - 1.50€",
+			       "Karija mçrce - 1.30€"};
+		double[] Preces = {1.00, 1.25, 1.15, 1.50, 1.30};
+		double sum = 0;
+		int[] IzvOpcijas = new int[Merces.length];
+
+		JPanel Mercespanel = new JPanel();
+		for(int i=0; i<Merces.length; i++){
+			JCheckBox CBox1 = new JCheckBox(Merces[i].toString());
+			Mercespanel.add(CBox1);
+		}
+	
+		int rezult = JOptionPane.showConfirmDialog(null, Mercespanel, "Izvçlies mçrces!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+		if(rezult==JOptionPane.OK_OPTION){
+			StringBuilder sb = new StringBuilder();
+			for(int i=0; i<Mercespanel.getComponentCount(); i++){
+				if(Mercespanel.getComponent(i) instanceof JCheckBox){
+					JCheckBox CBox1 = (JCheckBox) Mercespanel.getComponent(i);
+					if(CBox1.isSelected()){
+						sb.append(CBox1.getText()).append("\n");
+						IzvOpcijas[i] = 1;
+						sum += Preces[i];
+						}
+					}
+				}
+			
+			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum)+"€");
+			}
+		
+			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, IzveletasOpcijas, IzvOpcijas);
+			
+		}
 	
 	public static void main(String[] args) {
 		
