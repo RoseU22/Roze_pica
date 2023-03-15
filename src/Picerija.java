@@ -72,6 +72,7 @@ public class Picerija {
 	static void UztaisitPicu(){
 		
 		double cena = 0;
+		double piegade = 0;
 		
 		JTextField Adrese = new JTextField();
 		JTextField Vards = new JTextField();
@@ -95,7 +96,7 @@ public class Picerija {
 		};
 		
 		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
-		cena += 1.25;
+		piegade += 1.25;
 		
 		}else if(OpcijasIzvele==1){
 			
@@ -182,7 +183,7 @@ public class Picerija {
 					}
 				}
 			
-			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum)+"€");
+			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum+piegade)+"€");
 			}
 		
 			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, IzveletasOpcijas, IzvOpcijas, OpcijasIzvele);
