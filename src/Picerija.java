@@ -13,7 +13,7 @@ public class Picerija {
 	static String fNosaukums;
 	
 	
-	static void saglabat(JTextField Adrese, JTextField Vards, JTextField Uzvards, JTextField Talrunis, JTextField PicasLielums, int[] IzveletasOpcijas, int[] IzvOpcijas){
+	static void saglabat(JTextField Adrese, JTextField Vards, JTextField Uzvards, JTextField Talrunis, JTextField PicasLielums, int[] IzveletasOpcijas, int[] IzvOpcijas, int OpcijasIzvele){
 		fNosaukums = JOptionPane.showInputDialog("Kur glabâsiet kontaktdatus?");
 		int[] ir = new int[IzveletasOpcijas.length];
 		int[] ir2 = new int[IzvOpcijas.length];
@@ -22,8 +22,15 @@ public class Picerija {
 		try{
 			FileWriter fw = new FileWriter(fNosaukums+".txt", true);
 			PrintWriter pw = new PrintWriter(fw);
+			if(OpcijasIzvele == 0){
+				
 			pw.println(" - "+Vards.getText()+" "+Uzvards.getText()+" (+371 "+Talrunis.getText()+"):  "+Adrese.getText());
-			pw.print("Pasûtîjums: "+PicasLielums.getText()+"cm pica ar ");
+			pw.print("Pasûtîjums (Piegâde): "+PicasLielums.getText()+"cm pica ar ");
+			
+			}else if(OpcijasIzvele == 1){
+				pw.println(" - "+Vards.getText()+" "+Uzvards.getText()+":");
+				pw.print("Pasûtîjums (Uz vietas): "+PicasLielums.getText()+"cm pica ar ");
+			}
 			for(int i=0; i<IzvOpcijas.length; i++){
 				ir2[i] = IzvOpcijas[i];
 				summa2 += ir2[i];
@@ -72,6 +79,14 @@ public class Picerija {
 		JTextField Talrunis = new JTextField();
 		JTextField PicasLielums = new JTextField();
 		
+		String[] opcijas = {"Piegâde - 1.25€","Saòemt uz vietas"};
+		
+		int OpcijasIzvele = JOptionPane.showOptionDialog(null, "Kâdu veidu picas saòemðanai gribi?", "Izvçle", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcijas, opcijas[0]);
+		
+		if(OpcijasIzvele == 0){
+			
+		
+		
 		Object[] Kontaktdati = {
 				"Adrese: ", Adrese,
 				"Vârds: ", Vards,
@@ -79,11 +94,20 @@ public class Picerija {
 				"Talrunis: ", Talrunis
 		};
 		
+		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
+		cena += 1.25;
+		
+		}else if(OpcijasIzvele==1){
+			
+		Object[] KontaktdatiUzVietas = {"Vârds: ",Vards,
+										"Uzvârds: ", Uzvards};
+		
+		JOptionPane.showConfirmDialog(null, KontaktdatiUzVietas, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
+		}
 		Object[] Pica = {
 				"Izvçlies picas lielumu (1cm = 0.30€): ", PicasLielums,
 		};
 		
-		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
 		JOptionPane.showConfirmDialog(null, Pica, "Picas taisîðana", JOptionPane.OK_CANCEL_OPTION);
 		
 		Object[] piedevas = {"Siers - 2.00€",
@@ -161,7 +185,7 @@ public class Picerija {
 			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum)+"€");
 			}
 		
-			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, IzveletasOpcijas, IzvOpcijas);
+			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, IzveletasOpcijas, IzvOpcijas, OpcijasIzvele);
 			
 		}
 	
