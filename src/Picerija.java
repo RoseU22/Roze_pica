@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -82,7 +83,11 @@ public class Picerija {
 		
 		String[] opcijas = {"Piegâde - 1.25€","Saòemt uz vietas"};
 		
-		int OpcijasIzvele = JOptionPane.showOptionDialog(null, "Kâdu veidu picas saòemðanai gribi?", "Izvçle", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcijas, opcijas[0]);
+		ImageIcon PiegadesVeids = new ImageIcon("Piegade.png");
+		
+		int OpcijasIzvele = JOptionPane.showOptionDialog(null, "Kâdu veidu picas saòemðanai gribi?", "Izvçle", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, PiegadesVeids, opcijas, opcijas[0]);
+		
+		ImageIcon Kontakts = new ImageIcon("ContactInfo.png");
 		
 		if(OpcijasIzvele == 0){
 			
@@ -95,7 +100,7 @@ public class Picerija {
 				"Talrunis: ", Talrunis
 		};
 		
-		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
+		JOptionPane.showConfirmDialog(null, Kontaktdati, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, Kontakts);
 		piegade += 1.25;
 		
 		}else if(OpcijasIzvele==1){
@@ -103,13 +108,15 @@ public class Picerija {
 		Object[] KontaktdatiUzVietas = {"Vârds: ",Vards,
 										"Uzvârds: ", Uzvards};
 		
-		JOptionPane.showConfirmDialog(null, KontaktdatiUzVietas, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION);
+		JOptionPane.showConfirmDialog(null, KontaktdatiUzVietas, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, Kontakts);
 		}
 		Object[] Pica = {
 				"Izvçlies picas lielumu (1cm = 0.30€): ", PicasLielums,
 		};
 		
-		JOptionPane.showConfirmDialog(null, Pica, "Picas taisîðana", JOptionPane.OK_CANCEL_OPTION);
+		ImageIcon Izmers = new ImageIcon("Izmers.png");
+		
+		JOptionPane.showConfirmDialog(null, Pica, "Picas taisîðana", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, Izmers);
 		
 		Object[] piedevas = {"Siers - 2.00€",
 							 "Bekons - 1.50€",
@@ -131,7 +138,8 @@ public class Picerija {
 			panel.add(CBox);
 		}
 		
-		int rezultats = JOptionPane.showConfirmDialog(null, panel, "Izvçlies piedevas picai!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		ImageIcon Piedevas = new ImageIcon("Piedevas.png");
+		int rezultats = JOptionPane.showConfirmDialog(null, panel, "Izvçlies piedevas picai!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, Piedevas);
 		
 		if(rezultats==JOptionPane.OK_OPTION){
 			StringBuilder sb = new StringBuilder();
@@ -168,7 +176,8 @@ public class Picerija {
 			Mercespanel.add(CBox1);
 		}
 	
-		int rezult = JOptionPane.showConfirmDialog(null, Mercespanel, "Izvçlies mçrces!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		ImageIcon MercesIzvele = new ImageIcon("Merces.png");
+		int rezult = JOptionPane.showConfirmDialog(null, Mercespanel, "Izvçlies mçrces!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, MercesIzvele);
 		
 		if(rezult==JOptionPane.OK_OPTION){
 			StringBuilder sb = new StringBuilder();
@@ -183,7 +192,10 @@ public class Picerija {
 					}
 				}
 			
-			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+(cena+sum+piegade)+"€");
+			double pedejaSumma = cena+sum+piegade;
+		    double noapalot = (double)Math.round(pedejaSumma*100)/100;
+		    ImageIcon Summa = new ImageIcon("Summa.png");
+			JOptionPane.showMessageDialog(null, "Paldies par pirkumu! Jûsu maksa par picu: "+noapalot+"€", "Pirkums", JOptionPane.PLAIN_MESSAGE, Summa);
 			}
 		
 			saglabat(Adrese, Vards, Uzvards, Talrunis, PicasLielums, IzveletasOpcijas, IzvOpcijas, OpcijasIzvele);
@@ -192,12 +204,18 @@ public class Picerija {
 	
 	public static void main(String[] args) {
 		
+		ImageIcon Pizza = new ImageIcon("Pizza.jpg");
+		
 		String[] opcijas = {"Uztaisît picu","Apskatît aktîvos pasûtîjumus","Iziet no programmas"};
 		String izvele;
 		
 		do{
+<<<<<<< HEAD
 			
 			izvele = (String)JOptionPane.showInputDialog(null, "Picas pasûtîðanas sistçma", "Picçrija", JOptionPane.INFORMATION_MESSAGE, null, opcijas, opcijas[0]);
+=======
+			izvele = (String)JOptionPane.showInputDialog(null, "Picas pasûtîðanas sistçma", "Picçrija", JOptionPane.INFORMATION_MESSAGE, Pizza, opcijas, opcijas[0]);
+>>>>>>> tests1
 			
 			switch(izvele){
 				

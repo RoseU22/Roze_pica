@@ -1,4 +1,9 @@
+<<<<<<< HEAD
  - qwewqe wqeqwe (+371 123123):  qweqwewq
 Pasûtîjums (Piegâde): 30cm pica ar  izvçlçtâm mçrcçm, 
+=======
+ - Ulvis Roze:
+Pasûtîjums (Uz vietas): 25cm pica ar  izvçlçtâm mçrcçm, 
+>>>>>>> tests1
  izvçlçtâm piedevâm
 
