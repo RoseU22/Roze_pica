@@ -1,9 +1,12 @@
-<<<<<<< HEAD
- - qwewqe wqeqwe (+371 123123):  qweqwewq
-Pasûtîjums (Piegâde): 30cm pica ar  izvçlçtâm mçrcçm, 
-=======
  - Ulvis Roze:
 Pasûtîjums (Uz vietas): 25cm pica ar  izvçlçtâm mçrcçm, 
->>>>>>> tests1
+ izvçlçtâm piedevâm
+
+ - Ulvis Roze (+371 12345678):  Ukstiòa iela
+Pasûtîjums (Piegâde): 25cm pica ar  izvçlçtâm mçrcçm, 
+ izvçlçtâm piedevâm
+
+ - elizabete Slavanava (+371 14326745):  Ezera iela
+Pasûtîjums (Piegâde): 30cm pica ar  izvçlçtâm mçrcçm, 
  izvçlçtâm piedevâm
 

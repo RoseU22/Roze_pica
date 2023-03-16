@@ -56,6 +56,8 @@ public class Picerija {
 	static void apskatitPasutijumus(){
 		String teksts, str="";
 		
+		fNosaukums = JOptionPane.showInputDialog("Kuru failu gribat apskatît?");
+		
 		try{
 			FileReader fr = new FileReader(fNosaukums+".txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -111,7 +113,7 @@ public class Picerija {
 		JOptionPane.showConfirmDialog(null, KontaktdatiUzVietas, "Kontaktdati", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, Kontakts);
 		}
 		Object[] Pica = {
-				"Izvçlies picas lielumu (1cm = 0.30€): ", PicasLielums,
+				"Izvçlies picas lielumu (1cm = 0.40€): ", PicasLielums,
 		};
 		
 		ImageIcon Izmers = new ImageIcon("Izmers.png");
@@ -156,7 +158,7 @@ public class Picerija {
 			
 		    String teksts = PicasLielums.getText();
 		    double prece = Double.parseDouble(teksts);
-		    cena = ((prece*0.30)+summa*1);
+		    cena = ((prece*0.40)+summa*1);
 			
 			
 		}
@@ -210,12 +212,8 @@ public class Picerija {
 		String izvele;
 		
 		do{
-<<<<<<< HEAD
-			
-			izvele = (String)JOptionPane.showInputDialog(null, "Picas pasûtîðanas sistçma", "Picçrija", JOptionPane.INFORMATION_MESSAGE, null, opcijas, opcijas[0]);
-=======
+		
 			izvele = (String)JOptionPane.showInputDialog(null, "Picas pasûtîðanas sistçma", "Picçrija", JOptionPane.INFORMATION_MESSAGE, Pizza, opcijas, opcijas[0]);
->>>>>>> tests1
 			
 			switch(izvele){
 				
