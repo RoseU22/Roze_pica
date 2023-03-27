@@ -1,5 +1,6 @@
 # Roze_pica
 Programmas kods ar manu izstrādāto picērijas kodu
+:pizza::pizza::pizza:
 
 ![Picērijas attēls](https://png.pngtree.com/element_our/20190531/ourmid/pngtree-cartoon-yellow-pizza-illustration-image_1296508.jpg)
 
@@ -12,4 +13,4 @@ Programmas kods ar manu izstrādāto picērijas kodu
 - [x] Iespēja izvēlēties picas piedevas 
 - [x] Iespēja izvēlēties picas mērces
 - [x] Programma aprēķina picas galīgo summu
-- [ ] Uztaisīt dropdown lodziņu, kas parāda failu nosaukumus kur var apskatīties personas pasūtījumus
+- [x] Uztaisīt dropdown lodziņu, kas parāda failu nosaukumus kur var apskatīties personas pasūtījumus
