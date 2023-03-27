@@ -12,4 +12,4 @@ Programmas kods ar manu izstrādāto picērijas kodu
 - [x] Iespēja izvēlēties picas piedevas 
 - [x] Iespēja izvēlēties picas mērces
 - [x] Programma aprēķina picas galīgo summu
-- [] Uztaisīt dropdown lodziņu, kas parāda failu nosaukumus kur var apskatīties personas pasūtījumus
+- [ ] Uztaisīt dropdown lodziņu, kas parāda failu nosaukumus kur var apskatīties personas pasūtījumus
