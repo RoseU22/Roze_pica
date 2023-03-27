@@ -12,13 +12,17 @@ import javax.swing.JTextField;
 public class Picerija {
 
 	static String fNosaukums;
-	
+	static String[] fNosaukumi = new String[10];
+	static int lielums = 0;
 	
 	static void saglabat(JTextField Adrese, JTextField Vards, JTextField Uzvards, JTextField Talrunis, JTextField PicasLielums, int[] IzveletasOpcijas, int[] IzvOpcijas, int OpcijasIzvele){
-		fNosaukums = JOptionPane.showInputDialog("Kur glabâsiet kontaktdatus?");
+		fNosaukums = (String) JOptionPane.showInputDialog("Kur glabâsiet kontaktdatus?\n(Var tikai bût maksimâli 10 faili vienlaikus)");
 		int[] ir = new int[IzveletasOpcijas.length];
 		int[] ir2 = new int[IzvOpcijas.length];
 		int summa = 0, summa2 = 0;
+		
+		fNosaukumi[lielums] = fNosaukums;
+		lielums++;
 		
 		try{
 			FileWriter fw = new FileWriter(fNosaukums+".txt", true);
@@ -56,7 +60,7 @@ public class Picerija {
 	static void apskatitPasutijumus(){
 		String teksts, str="";
 		
-		fNosaukums = JOptionPane.showInputDialog("Kuru failu gribat apskatît?");
+		fNosaukums = (String) JOptionPane.showInputDialog(null, "Kuru failu gribat apskatît?", "Izvçle", JOptionPane.INFORMATION_MESSAGE, null, fNosaukumi, fNosaukumi[0]);
 		
 		try{
 			FileReader fr = new FileReader(fNosaukums+".txt");
